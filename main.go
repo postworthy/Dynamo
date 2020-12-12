@@ -6,7 +6,6 @@ import (
 	"math"
 	"net"
 	"os"
-	"runtime"
 	"strings"
 	"sync"
 )
@@ -52,15 +51,6 @@ func main() {
 	}
 
 	wg.Wait()
-}
-
-func maxParallelism() int {
-	maxProcs := runtime.GOMAXPROCS(0)
-	numCPU := runtime.NumCPU()
-	if maxProcs < numCPU {
-		return maxProcs
-	}
-	return numCPU
 }
 
 func printResults(results chan dnsResult) {
